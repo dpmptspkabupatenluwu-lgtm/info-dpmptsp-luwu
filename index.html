@@ -3,781 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portal Informasi DPMPTSP Kabupaten Luwu - Layanan Perizinan Terpadu">
-    <title>DPMPTSP Kabupaten Luwu | Portal Pelayanan</title>
+    <meta name="description" content="Portal Informasi DPMPTSP Kabupaten Luwu - Pelayanan Terpadu Satu Pintu">
+    <title>DPMPTSP Kabupaten Luwu | Portal Premium</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <style>
         /* =========================================================
-           💎 VARIABEL TEMA: DEEP OCEAN & AQUA GLOW (ULTRA PREMIUM)
+           💎 TEMA: DEEP OCEAN & AQUA GLOW (ULTRA LUXURY)
            ========================================================= */
         :root {
-            --primary: #0f172a;       /* Slate 900 - Biru Sangat Gelap & Elegan */
-            --primary-light: #2563eb; /* Blue 600 - Biru Utama Menyala */
-            --primary-soft: #dbeafe;  /* Blue 100 - Latar lembut */
-            --accent: #0d9488;        /* Teal 600 - Hijau Aqua Profesional */
-            --accent-light: #14b8a6;  /* Teal 500 - Aqua Terang */
-            --accent-glow: rgba(20, 184, 166, 0.4);
-            
+            --primary: #0f172a;       /* Deep Navy */
+            --primary-light: #2563eb; /* Electric Blue */
+            --primary-soft: rgba(37, 99, 235, 0.1);
+            --accent: #0d9488;        /* Teal */
+            --accent-light: #14b8a6;  /* Aqua Glow */
             --white: #ffffff;
             --bg-body: #f8fafc;
             --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-400: #94a3b8;
             --gray-600: #475569;
             --gray-800: #1e293b;
-            
-            /* Shadow Mahakarya */
-            --shadow-float: 0 20px 40px -10px rgba(15, 23, 42, 0.1);
-            --shadow-glow: 0 10px 30px -10px rgba(37, 99, 235, 0.3);
+            --shadow-float: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+            --shadow-glow: 0 10px 30px -10px rgba(37, 99, 235, 0.4);
             --radius-md: 16px;
-            --radius-lg: 24px;
+            --radius-lg: 30px;
         }
 
-        /* =========================================================
-           🚀 RESET & BASE
-           ========================================================= */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--bg-body); color: var(--gray-800); line-height: 1.7; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        button { cursor: pointer; border: none; outline: none; background: transparent; font-family: inherit;}
         .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-        ::selection { background: var(--accent); color: var(--white); }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--gray-100); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
         /* --- PRELOADER --- */
-        .preloader { position: fixed; inset: 0; background: var(--white); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.6s cubic-bezier(0.8,0,0.2,1); }
+        .preloader { position: fixed; inset: 0; background: var(--white); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.8s cubic-bezier(0.8,0,0.2,1); }
         .preloader.hidden { opacity: 0; pointer-events: none; }
-        .loader-pulse { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--accent)); animation: pulse 1.5s infinite; box-shadow: var(--shadow-glow); margin-bottom: 20px;}
-        @keyframes pulse { 0% { transform: scale(0.8); opacity: 0.5; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.8); opacity: 0.5; } }
-        .loader-text { font-weight: 800; font-size: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px;}
-
-        /* --- ANIMASI SCROLL REVEAL (MUNCUL PERLAHAN) --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
+        .loader-pulse { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-light), var(--accent)); animation: pulse 1.5s infinite; box-shadow: var(--shadow-glow); margin-bottom: 20px;}
+        @keyframes pulse { 0% { transform: scale(0.8); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(0.8); opacity: 0.5; } }
 
         /* --- HEADER & NAVIGATION --- */
-        .header-top-bar { background: var(--primary); color: var(--gray-200); font-size: 0.85rem; padding: 10px 0; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.1);}
-        .header-top-content { display: flex; justify-content: space-between; align-items: center; }
-        .header-contact, .header-social { display: flex; gap: 24px; align-items: center; }
-        .header-contact span { display: flex; align-items: center; gap: 8px; transition: color 0.3s; cursor: pointer;}
-        .header-contact span:hover { color: var(--accent-light); }
-        .social-icon { color: var(--gray-400); transition: all 0.3s; }
-        .social-icon:hover { color: var(--white); transform: translateY(-2px);}
-
-        .header { position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.9) !important; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); transition: padding 0.4s ease; }
-        .header-main-content { padding: 18px 0; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
-        .header.scrolled .header-main-content { padding: 10px 0; }
+        .header { position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-100); transition: 0.4s; }
+        .header-main { padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
         
         .brand { display: flex; align-items: center; gap: 15px; }
-        .brand-dual-logo { display: flex; gap: 12px; align-items: center;}
-        .brand-logo-img { height: 50px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); transition: transform 0.3s;}
-        .brand:hover .brand-logo-img { transform: scale(1.05); }
-        
-        .brand-info-text { display: flex; flex-direction: column; position: relative; padding-left: 15px;}
-        .brand-info-text::before { content: ''; position: absolute; left: 0; top: 10%; height: 80%; width: 3px; background: linear-gradient(to bottom, var(--primary-light), var(--accent)); border-radius: 3px; }
-        .dept-title { font-size: 1.7rem; font-weight: 800; line-height: 1.1; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px;}
-        .dept-sub { color: var(--gray-600); font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;}
+        .brand-logo { height: 50px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+        .dept-title { font-size: 1.4rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; line-height: 1.1; }
+        .dept-sub { font-size: 0.75rem; font-weight: 700; color: var(--gray-600); letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-top: 2px; }
 
-        .header-clock { text-align: right; background: var(--gray-50); padding: 8px 16px; border-radius: 12px; border: 1px solid var(--gray-200);}
-        .clock-digital { font-size: 1.25rem; font-weight: 800; color: var(--primary-light); letter-spacing: 1px;}
-        .clock-date { font-size: 0.75rem; color: var(--gray-600); font-weight: 600; text-transform: uppercase;}
+        .nav-menu { display: flex; justify-content: center; gap: 8px; padding-bottom: 12px; }
+        .nav-link { padding: 10px 22px; font-weight: 700; font-size: 0.9rem; color: var(--gray-600); border-radius: 50px; position: relative; }
+        .nav-link:hover { color: var(--primary-light); background: var(--primary-soft); }
+        .nav-link.active { background: var(--primary-light); color: var(--white); box-shadow: var(--shadow-glow); }
+
+        .nav-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .nav-toggle span { width: 25px; height: 3px; background: var(--primary); border-radius: 2px; transition: 0.3s; }
 
         /* --- RUNNING TEXT --- */
-        .running-text-wrapper { background: var(--primary); color: var(--white); padding: 12px 0; overflow: hidden; white-space: nowrap; font-size: 0.95rem; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 2px solid var(--accent);}
-        .running-text-track { display: inline-block; padding-left: 100%; animation: marquee 30s linear infinite; }
-        .running-label { font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent-light)); padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 10px var(--accent-glow);}
-        .running-separator { margin: 0 20px; opacity: 0.3; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-
-        /* --- NAVBAR --- */
-        .navbar { border-top: 1px solid rgba(0,0,0,0.04); }
-        .nav-menu { display: flex; justify-content: center; gap: 5px; padding: 10px 0; }
-        .nav-link { padding: 10px 24px; font-weight: 700; font-size: 0.9rem; color: var(--gray-600); border-radius: 50px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;}
-        .nav-link:hover { color: var(--primary-light); background: var(--primary-soft); }
-        .nav-link.active { color: var(--white); background: var(--primary-light); box-shadow: var(--shadow-glow); }
-        
-        .nav-toggle { display: none; width: 34px; height: 24px; flex-direction: column; justify-content: space-between; margin: 15px 0; }
-        .nav-toggle span { display: block; height: 3px; width: 100%; background: var(--primary); border-radius: 3px; transition: 0.4s; }
-
-        /* --- SECTIONS --- */
-        .section { padding: 100px 0; position: relative;}
-        .section-alt { background: linear-gradient(180deg, var(--white) 0%, var(--bg-body) 100%); }
-        .section-header { margin-bottom: 50px; text-align: left; display: flex; justify-content: space-between; align-items: flex-end;}
-        .section-title { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; letter-spacing: -1px; position: relative; display: inline-block;}
-        .section-title::before { content: ''; position: absolute; left: 0; bottom: -8px; width: 40%; height: 6px; background: var(--accent); border-radius: 10px; }
-        .section-title::after { content: ''; position: absolute; left: 45%; bottom: -8px; width: 15%; height: 6px; background: var(--primary-light); border-radius: 10px; }
-        .section-subtitle { color: var(--gray-600); font-size: 1.15rem; font-weight: 500;}
+        .running-text { background: var(--primary); color: var(--white); padding: 12px 0; overflow: hidden; white-space: nowrap; border-bottom: 2px solid var(--accent-light); }
+        .running-track { display: inline-block; animation: marquee 35s linear infinite; }
+        .running-label { background: var(--accent); padding: 3px 12px; border-radius: 20px; font-weight: 800; font-size: 0.75rem; margin-right: 15px; }
+        @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
         /* --- HERO SLIDER --- */
-        .hero-section { padding-top: 40px; }
-        .hero-slider { position: relative; height: 550px; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 30px; box-shadow: var(--shadow-float); background: var(--primary);}
-        .slider-track { display: flex; height: 100%; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .hero-slider { height: 550px; border-radius: var(--radius-lg); overflow: hidden; position: relative; background: var(--primary); box-shadow: var(--shadow-float); margin-top: 20px; }
+        .slider-track { display: flex; height: 100%; transition: 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .slider-slide { min-width: 100%; position: relative; }
-        .slider-slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85;}
+        .slider-slide img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .slider-overlay { position: absolute; inset: 0; padding: 80px; display: flex; flex-direction: column; justify-content: center; color: white; background: linear-gradient(90deg, rgba(15,23,42,0.9), transparent); }
+        .slider-overlay h2 { font-size: 3rem; font-weight: 800; margin-bottom: 15px; line-height: 1.1; max-width: 800px; }
+        .slider-overlay p { font-size: 1.2rem; opacity: 0.8; max-width: 600px; border-left: 4px solid var(--accent-light); padding-left: 20px; }
+
+        /* --- STATS GRID --- */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: -70px; position: relative; z-index: 10; }
+        .stat-card { background: white; padding: 30px; border-radius: var(--radius-md); box-shadow: var(--shadow-float); text-align: center; border-bottom: 5px solid var(--accent); transition: 0.4s; }
+        .stat-card:hover { transform: translateY(-10px); }
+        .stat-val { font-size: 2.5rem; font-weight: 800; color: var(--primary-light); display: block; margin-bottom: 5px; }
+        .stat-label { font-size: 0.8rem; font-weight: 700; color: var(--gray-600); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- SECTIONS & CARDS --- */
+        .section { padding: 100px 0; }
+        .section-header { margin-bottom: 50px; }
+        .section-title { font-size: 2.2rem; font-weight: 800; color: var(--primary); position: relative; display: inline-block; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 6px; background: var(--accent); border-radius: 10px; }
+
+        .grid-kegiatan { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; }
+        .card { background: white; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-float); transition: 0.4s; border: 1px solid var(--gray-100); }
+        .card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px -15px rgba(15,23,42,0.15); }
+        .card-img { width: 100%; height: 240px; object-fit: cover; transition: 0.6s; }
+        .card:hover .card-img { transform: scale(1.05); }
+        .card-body { padding: 30px; }
+        .card-tag { color: var(--primary-light); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 12px; }
+        .card-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; line-height: 1.3; }
+
+        /* --- PENGUMUMAN & LAYANAN --- */
+        .pengumuman-item { background: white; padding: 35px; border-radius: var(--radius-md); border-left: 6px solid var(--accent); margin-bottom: 25px; box-shadow: var(--shadow-float); transition: 0.3s; }
+        .pengumuman-item:hover { transform: translateX(10px); }
         
-        .slider-slide-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 50%, rgba(15, 23, 42, 0.1) 100%); display: flex; flex-direction: column; justify-content: center; padding: 80px; color: var(--white); }
-        .slider-slide-overlay h3 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.15; max-width: 800px; text-shadow: 0 10px 20px rgba(0,0,0,0.5); letter-spacing: -1px;}
-        .slider-slide-overlay p { font-size: 1.25rem; font-weight: 500; opacity: 0.9; max-width: 600px; border-left: 4px solid var(--accent); padding-left: 20px;}
-        
-        .slider-dots { position: absolute; bottom: 30px; left: 80px; display: flex; gap: 12px; z-index: 10; }
-        .slider-dot { width: 40px; height: 6px; border-radius: 10px; background: rgba(255,255,255,0.2); transition: 0.4s ease; overflow: hidden; position: relative;}
-        .slider-dot.active { width: 60px; background: rgba(255,255,255,0.4); }
-        .slider-dot.active::after { content: ''; position: absolute; top:0; left:0; height: 100%; width: 100%; background: var(--white); animation: progress 5s linear forwards;}
-        @keyframes progress { from { width: 0%; } to { width: 100%; } }
+        .table-wrapper { background: white; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-float); }
+        table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        th { background: var(--gray-100); padding: 22px; text-align: left; font-size: 0.85rem; text-transform: uppercase; color: var(--primary); }
+        td { padding: 22px; border-bottom: 1px solid var(--gray-100); font-size: 1rem; }
+        .badge-time { background: var(--primary-soft); color: var(--primary-light); padding: 6px 16px; border-radius: 30px; font-weight: 800; font-size: 0.8rem; }
 
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: all 0.3s; z-index: 10; border: 1px solid rgba(255,255,255,0.2); font-size: 1.5rem;}
-        .slider-btn:hover { background: var(--white); color: var(--primary); transform: translateY(-50%) scale(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2);}
-        .slider-prev { right: 100px; } 
-        .slider-next { right: 25px; }
-
-        /* KARTU STATISTIK MENGAMBANG */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-top: -80px; position: relative; z-index: 20; padding: 0 20px;}
-        .stat-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border: 1px solid var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-float); padding: 30px; display: flex; align-items: center; gap: 20px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden;}
-        .stat-card:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(15, 23, 42, 0.12); border-color: var(--primary-soft);}
-        .stat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--primary-light), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;}
-        .stat-card:hover::before { transform: scaleX(1); }
-        
-        .stat-icon-wrap { width: 70px; height: 70px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; background: var(--primary-soft); color: var(--primary-light); transition: all 0.4s;}
-        .stat-card:hover .stat-icon-wrap { background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: var(--white); box-shadow: var(--shadow-glow); transform: scale(1.1) rotate(-5deg);}
-        
-        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 5px; }
-        .stat-label { color: var(--gray-600); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;}
-
-        /* --- KARTU KEGIATAN --- */
-        .kegiatan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
-        .kegiatan-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100); transition: all 0.4s ease; display: flex; flex-direction: column;}
-        .kegiatan-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-float); }
-        
-        .kegiatan-card-img-wrap { position: relative; overflow: hidden; height: 220px; }
-        .kegiatan-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .kegiatan-card:hover .kegiatan-card-img { transform: scale(1.08); }
-        .kegiatan-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,23,42,0.8), transparent); opacity: 0; transition: opacity 0.3s; }
-        .kegiatan-card:hover .kegiatan-overlay { opacity: 1; }
-
-        .kegiatan-card-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1;}
-        .kegiatan-card-date { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; margin-bottom: 15px; color: var(--primary-light); background: var(--primary-soft); padding: 6px 16px; border-radius: 30px; width: fit-content;}
-        .kegiatan-card-title { font-size: 1.35rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; line-height: 1.4; transition: color 0.3s;}
-        .kegiatan-card:hover .kegiatan-card-title { color: var(--primary-light); }
-        .kegiatan-card-desc { color: var(--gray-600); font-size: 1rem; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 20px;}
-        
-        /* TOMBOL KILAU */
-        .btn-glow { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 50px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; font-size: 0.9rem; background: linear-gradient(135deg, var(--primary-light), var(--primary)); color: var(--white); position: relative; overflow: hidden; transition: all 0.3s; box-shadow: var(--shadow-glow); border: none; cursor: pointer;}
-        .btn-glow::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-25deg); transition: 0.5s; }
-        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.5); }
-        .btn-glow:hover::after { left: 125%; }
-
-        /* --- GALERI MASONRY --- */
-        .galeri-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-        .galeri-item { border-radius: var(--radius-lg); overflow: hidden; height: 300px; position: relative; cursor: pointer; box-shadow: var(--shadow-sm); }
-        .galeri-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); }
-        .galeri-item:hover img { transform: scale(1.1); }
-        .galeri-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,23,42, 0.9), transparent); opacity: 0; display: flex; align-items: flex-end; padding: 30px; transition: all 0.4s ease; transform: translateY(20px);}
-        .galeri-item:hover .galeri-item-overlay { opacity: 1; transform: translateY(0);}
-        .galeri-caption { color: var(--white); font-weight: 700; font-size: 1.2rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1.4;}
-
-        /* --- PENGUMUMAN LIST --- */
-        .pengumuman-list { display: flex; flex-direction: column; gap: 20px; }
-        .pengumuman-item { padding: 35px; background: var(--white); border-radius: var(--radius-lg); display: flex; gap: 25px; align-items: center; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100); transition: all 0.3s; position: relative; overflow: hidden;}
-        .pengumuman-item::before { content: ''; position: absolute; left: 0; top: 0; width: 6px; height: 100%; background: var(--accent); border-radius: 6px 0 0 6px;}
-        .pengumuman-item:hover { transform: translateX(10px); box-shadow: var(--shadow-float); border-color: var(--primary-soft);}
-        .pengumuman-icon { font-size: 2.5rem; background: rgba(13, 148, 136, 0.1); color: var(--accent); width: 80px; height: 80px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 20px; }
-        .pengumuman-content h4 { font-size: 1.3rem; color: var(--primary); margin-bottom: 8px; font-weight: 800;}
-        .pengumuman-content p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.6; margin: 0;}
-
-        /* --- TABEL LAYANAN PREMIUM --- */
-        .table-wrapper { background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow-float); padding: 30px; overflow-x: auto; border: 1px solid var(--gray-100);}
-        .layanan-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 700px; }
-        .layanan-table th, .layanan-table td { padding: 24px; text-align: left; border-bottom: 1px solid var(--gray-100); }
-        .layanan-table th { background: var(--bg-body); color: var(--primary); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1.5px; padding-top: 18px; padding-bottom: 18px;}
-        .layanan-table th:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
-        .layanan-table th:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
-        .layanan-table tr { transition: all 0.3s; }
-        .layanan-table tr:hover td { background: var(--primary-soft); color: var(--primary-dark);}
-        .layanan-table tr:last-child td { border-bottom: none; }
-        .badge-waktu { display: inline-flex; align-items: center; gap: 8px; background: rgba(13, 148, 136, 0.1); color: var(--accent); padding: 8px 16px; border-radius: 30px; font-weight: 800; font-size: 0.9rem; border: 1px solid rgba(13, 148, 136, 0.2);}
-
-        /* --- FOOTER SULTAN --- */
-        .footer { background: var(--primary); color: var(--white); position: relative; margin-top: 150px; padding-top: 80px;}
-        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--primary-light)); }
-        .footer-content { padding-bottom: 60px; }
+        /* --- FOOTER --- */
+        .footer { background: var(--primary); color: white; padding: 80px 0 40px; margin-top: 100px; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; }
-        .footer-brand { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
-        .footer-brand h3 { font-size: 2rem; font-weight: 800; letter-spacing: -1px; background: linear-gradient(135deg, #fff, var(--primary-soft)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-        .footer-about p { color: var(--gray-400); font-size: 1.05rem; line-height: 1.8; max-width: 400px;}
-        
-        .footer-col h4 { font-size: 1.3rem; font-weight: 800; margin-bottom: 30px; color: var(--white); letter-spacing: 1px;}
-        .footer-col ul { display: flex; flex-direction: column; gap: 20px; color: var(--gray-400); }
-        .footer-col ul li { display: flex; align-items: flex-start; gap: 15px; font-size: 1.05rem;}
-        .footer-icon-box { background: rgba(255,255,255,0.1); padding: 8px; border-radius: 10px; color: var(--accent-light); display: flex;}
-        
-        .footer-bottom { background: rgba(0,0,0,0.3); padding: 25px 0; text-align: center; color: var(--gray-400); font-size: 1rem; border-top: 1px solid rgba(255,255,255,0.05);}
-        .footer-bottom span { color: var(--white); font-weight: 700;}
+        .footer-bottom { margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; opacity: 0.6; font-size: 0.9rem; }
 
-        /* --- LIGHTBOX & BACK TO TOP --- */
-        .lightbox { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.98); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.4s; backdrop-filter: blur(15px);}
-        .lightbox.active { opacity: 1; visibility: visible; }
-        .lightbox-img { max-width: 85%; max-height: 75vh; border-radius: 16px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); border: 2px solid rgba(255,255,255,0.1);}
-        .lightbox-caption { color: var(--white); margin-top: 30px; font-size: 1.5rem; font-weight: 800; letter-spacing: 0.5px;}
-        .lightbox-close { position: absolute; top: 40px; right: 40px; color: var(--white); transition: 0.3s; background: rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem;}
-        .lightbox-close:hover { background: #ef4444; transform: rotate(90deg); }
-        
-        .back-to-top { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; background: var(--primary-light); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-glow); opacity: 0; visibility: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 999; cursor: pointer;}
-        .back-to-top svg { width: 24px; height: 24px; stroke-width: 3;}
-        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-        .back-to-top:hover { background: var(--primary); transform: translateY(-10px); box-shadow: 0 20px 30px rgba(37, 99, 235, 0.4);}
+        /* --- ANIMATIONS & MOBILE --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* =========================================================
-           📱 RESPONSIVE MOBILE MAXIMAL (FIXED)
-           ========================================================= */
-        @media (max-width: 992px) { 
-            .footer-grid { grid-template-columns: 1fr 1fr; } 
-            .stats-grid { grid-template-columns: repeat(2, 1fr); margin-top: -40px;}
-        }
-        
+        @media (max-width: 992px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 768px) {
-            /* Fix Header & Kontak Atas */
-            .header-top-content { flex-direction: column; gap: 8px; text-align: center; }
-            .header-contact { flex-direction: column; gap: 8px; }
-            
-            /* Fix Logo dan Teks Judul */
-            .brand { align-items: flex-start; gap: 10px; }
-            .brand-logo-img { height: 40px; }
-            .dept-title { font-size: 1.3rem; }
-            .dept-sub { font-size: 0.65rem; }
-            .header-clock { display: none; } /* Sembunyikan jam digital agar hemat ruang */
-            
-            /* Fix Menu Toggle (Garis 3) */
             .nav-toggle { display: flex; }
-            .nav-menu { position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 20px; box-shadow: var(--shadow-float); clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: 0.4s ease-in-out; border-top: 1px solid var(--gray-100);}
+            .nav-menu { position: absolute; top: 100%; left: 0; width: 100%; background: white; flex-direction: column; padding: 20px; box-shadow: var(--shadow-float); clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: 0.5s; }
             .nav-menu.open { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-            
-            /* Fix Slider agar tulisan tidak berantakan */
-            .hero-slider { height: 450px; border-radius: 0; margin-bottom: 0;}
-            .slider-slide-overlay { padding: 30px 20px; align-items: center; text-align: center; justify-content: center;}
-            .slider-slide-overlay h3 { font-size: 1.8rem; margin-bottom: 15px;}
-            .slider-slide-overlay p { font-size: 1rem; border-left: none; padding-left: 0; border-top: 3px solid var(--accent); padding-top: 15px;}
-            .slider-dots { left: 50%; transform: translateX(-50%); bottom: 80px; }
-            .slider-prev, .slider-next { top: auto; bottom: 20px; transform: none; width: 45px; height: 45px;}
-            .slider-prev { right: auto; left: 50%; margin-left: -60px; }
-            .slider-next { right: auto; left: 50%; margin-left: 15px; }
-            
-            /* Fix Kartu Statistik & Layout Tengah */
-            .stats-grid { grid-template-columns: 1fr; margin-top: 0; padding: 20px; gap: 20px;}
-            .stat-card { padding: 20px; }
-            .section { padding: 60px 0; }
-            .section-header { flex-direction: column; align-items: center; text-align: center; gap: 15px; }
-            .section-title::before, .section-title::after { left: 50%; transform: translateX(-50%); }
-            .section-title::after { margin-left: 30px; }
-            
-            /* Fix Grid Kartu & Pengumuman */
-            .kegiatan-grid { grid-template-columns: 1fr; }
-            .pengumuman-item { flex-direction: column; align-items: center; text-align: center; padding: 25px;}
-            .pengumuman-item::before { width: 100%; height: 6px; top: 0; left: 0; border-radius: 6px 6px 0 0;}
-            
-            /* Fix Table & Footer */
-            .table-wrapper { padding: 15px; border-radius: 15px;}
-            .layanan-table th, .layanan-table td { padding: 15px; }
+            .hero-slider { height: 400px; }
+            .slider-overlay { padding: 40px 25px; align-items: center; text-align: center; }
+            .slider-overlay h2 { font-size: 1.8rem; }
+            .stats-grid { grid-template-columns: 1fr; margin-top: 20px; }
             .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .footer-brand { justify-content: center; }
-            .footer-col ul li { justify-content: center; }
-            .footer-icon-box { margin-right: 5px; }
+            .dept-title { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
+
     <div class="preloader" id="preloader">
         <div class="loader-pulse"></div>
-        <div class="loader-text">DPMPTSP</div>
+        <h2 style="font-weight: 800; color: var(--primary);">DPMPTSP LUWU</h2>
+        <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Sinkronisasi Data Dinamis...</p>
     </div>
 
-    <header class="header" id="header">
-        <div class="header-top-bar">
-            <div class="container">
-                <div class="header-top-content">
-                    <div class="header-contact">
-                        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (0471) 21000</span>
-                        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> dpmptsp@luwukab.go.id</span>
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <div class="brand">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Coat_of_arms_of_Luwu_Regency.svg" class="brand-logo" alt="Logo Luwu">
+                    <div>
+                        <span class="dept-title">DPMPTSP KAB. LUWU</span>
+                        <span class="dept-sub">Pelayanan Terpadu Satu Pintu</span>
                     </div>
                 </div>
+                <div id="digitalClock" style="font-weight: 800; color: var(--primary-light); font-size: 1.1rem;">00:00:00</div>
+                <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
             </div>
-        </div>
-
-        <div class="header-main">
-            <div class="container">
-                <div class="header-main-content">
-                    <div class="brand">                      
-                        <div class="brand-dual-logo">
-							<img src="images/logo-luwu.png" alt="" class="brand-logo-img" onerror="this.outerHTML='<span style=\'font-size:35px\'>🏛️</span>'">
-							<img src="images/logo_dpmptsp.png" alt="" class="brand-logo-img" onerror="this.outerHTML='<span style=\'font-size:35px\'>📑</span>'">
-						</div>
-						<div class="brand-info-text">
-                            <span class="dept-title">DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU</span>
-                            <span class="dept-sub">KABUPATEN LUWU</span>
-                        </div>
-                    </div>
-                    <div class="header-clock">
-                        <div class="clock-digital" id="jamDigital">00:00:00</div>
-                        <div class="clock-date" id="tanggalHari">-</div>
-                    </div>
-                    
-                    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                        <span></span><span></span><span></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="running-text-wrapper">
-            <div class="running-text-track" id="runningText">
-                <span class="running-label">📢 LIVE INFO</span><span class="running-separator">•</span><span class="running-content">Memuat informasi terkini...</span>
-            </div>
-        </div>
-
-        <nav class="navbar" id="navbar">
-            <div class="container">
+            <nav>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#beranda" class="nav-link active" data-section="beranda">Beranda</a></li>
-                    <li><a href="#kegiatan" class="nav-link" data-section="kegiatan">Kegiatan</a></li>
-                    <li><a href="#galeri" class="nav-link" data-section="galeri">Galeri</a></li>
-                    <li><a href="#pengumuman" class="nav-link" data-section="pengumuman">Pengumuman</a></li>
-                    <li><a href="#layanan" class="nav-link" data-section="layanan">Layanan</a></li>
+                    <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+                    <li><a href="#kegiatan" class="nav-link">Kegiatan</a></li>
+                    <li><a href="#pengumuman" class="nav-link">Pengumuman</a></li>
+                    <li><a href="#layanan" class="nav-link">Layanan</a></li>
+                    <li><a href="#kontak" class="nav-link">Kontak</a></li>
                 </ul>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
-    <main class="main-content">
-        <section id="beranda" class="hero-section">
-            <div class="container" style="max-width: 1300px; padding: 0;">
-                <div class="hero-slider" id="heroSlider">
-                    <div class="slider-track" id="sliderTrack"></div>
-                    <div class="slider-dots" id="sliderDots"></div>
-                    <button class="slider-btn slider-prev" id="sliderPrev">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-                    </button>
-                    <button class="slider-btn slider-next" id="sliderNext">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-                    </button>
-                </div>
+    <div class="running-text">
+        <div class="running-track" id="runningTrack">Memuat informasi terbaru dari sistem Google Sheets...</div>
+    </div>
+
+    <main class="container">
+        <section id="beranda">
+            <div class="hero-slider">
+                <div class="slider-track" id="sliderTrack">
+                    </div>
             </div>
 
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-card reveal reveal-delay-1">
-                        <div class="stat-icon-wrap"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-                        <div><div class="stat-number" id="countKegiatan">0</div><div class="stat-label">Kegiatan</div></div>
-                    </div>
-                    <div class="stat-card reveal reveal-delay-2">
-                        <div class="stat-icon-wrap"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
-                        <div><div class="stat-number" id="countPengumuman">0</div><div class="stat-label">Pengumuman</div></div>
-                    </div>
-                    <div class="stat-card reveal reveal-delay-3">
-                        <div class="stat-icon-wrap"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-                        <div><div class="stat-number" id="countLayanan">0</div><div class="stat-label">Layanan</div></div>
-                    </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-val" id="valKegiatan">0</span>
+                    <span class="stat-label">Kegiatan</span>
                 </div>
-            </div>
-            
-            <div class="container" style="margin-top: 50px;">
-                <div class="section-header reveal">
-                    <div><h2 class="section-title">Berita Terkini</h2><p class="section-subtitle">Update kegiatan terbaru DPMPTSP Luwu</p></div>
-                    <a href="#kegiatan" class="btn-glow">Lihat Semua Data →</a>
+                <div class="stat-card">
+                    <span class="stat-val" id="valPengumuman">0</span>
+                    <span class="stat-label">Pengumuman</span>
                 </div>
-                <div class="kegiatan-grid" id="kegiatanPreview"></div>
+                <div class="stat-card">
+                    <span class="stat-val" id="valLayanan">0</span>
+                    <span class="stat-label">Layanan</span>
+                </div>
             </div>
         </section>
 
-        <section id="kegiatan" class="section section-alt">
-            <div class="container">
-                <div class="section-header reveal">
-                    <div><h2 class="section-title">Arsip Kegiatan</h2><p class="section-subtitle" id="kegiatanCountLabel">Memuat data...</p></div>
-                </div>
-                <div class="kegiatan-grid full-grid" id="kegiatanAll"></div>
+        <section id="kegiatan" class="section">
+            <div class="section-header reveal">
+                <h2 class="section-title">Berita & Kegiatan</h2>
             </div>
+            <div class="grid-kegiatan" id="kegiatanList"></div>
         </section>
 
-        <section id="galeri" class="section">
-            <div class="container">
-                <div class="section-header reveal">
-                    <div><h2 class="section-title">Galeri Visual</h2><p class="section-subtitle" id="galeriCountLabel">Memuat data...</p></div>
-                </div>
-                <div class="galeri-grid" id="galeriGrid"></div>
+        <section id="pengumuman" class="section" style="background: var(--primary-soft); border-radius: var(--radius-lg); padding: 60px 40px;">
+            <div class="section-header reveal">
+                <h2 class="section-title">Informasi Penting</h2>
             </div>
-        </section>
-
-        <section id="pengumuman" class="section section-alt">
-            <div class="container">
-                <div class="section-header reveal">
-                    <div><h2 class="section-title">Pusat Informasi</h2><p class="section-subtitle" id="pengumumanCountLabel">Pengumuman & Pemberitahuan</p></div>
-                </div>
-                <div class="pengumuman-list" id="pengumumanList"></div>
-            </div>
+            <div id="pengumumanList"></div>
         </section>
 
         <section id="layanan" class="section">
-            <div class="container">
-                <div class="section-header reveal">
-                    <div><h2 class="section-title">Standar Layanan</h2><p class="section-subtitle">Informasi persyaratan dan waktu penyelesaian izin</p></div>
-                </div>
-                <div class="table-wrapper reveal">
-                    <table class="layanan-table">
-                        <thead><tr><th>No</th><th>Jenis Layanan</th><th>Persyaratan Dokumen</th><th>Estimasi Waktu</th></tr></thead>
-                        <tbody id="layananTableBody"></tbody>
-                    </table>
-                </div>
+            <div class="section-header reveal">
+                <h2 class="section-title">Standar Operasional Prosedur</h2>
+            </div>
+            <div class="table-wrapper reveal">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jenis Perizinan</th>
+                            <th>Persyaratan Dokumen</th>
+                            <th>Estimasi Waktu</th>
+                        </tr>
+                    </thead>
+                    <tbody id="layananTable"></tbody>
+                </table>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-col footer-about">
-                        <div class="footer-brand">
-                            <span style="font-size:40px">🏛️</span>
-                            <h3>DPMPTSP Luwu</h3>
-                        </div>
-                        <p>Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Kabupaten Luwu. Berkomitmen melayani masyarakat dengan Profesional, Cepat, Transparan, dan Akuntabel.</p>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Pusat Kontak</h4>
-                        <ul>
-                            <li><div class="footer-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div> Kompleks Perkantoran Bupati Luwu</li>
-                            <li><div class="footer-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div> (0471) 21000</li>
-                            <li><div class="footer-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div> dpmptsp@luwukab.go.id</li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Jam Operasional</h4>
-                        <ul>
-                            <li><div class="footer-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div> Senin - Kamis: 08.00 - 15.00</li>
-                            <li><div class="footer-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div> Jumat: 08.00 - 14.00</li>
-                            <li><div class="footer-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div> Sabtu & Minggu: Tutup</li>
-                        </ul>
-                    </div>
-                </div>
+    <footer class="footer" id="kontak">
+        <div class="container footer-grid">
+            <div>
+                <h3 style="margin-bottom: 20px;">DPMPTSP Kabupaten Luwu</h3>
+                <p style="opacity: 0.6;">Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu berkomitmen memberikan pelayanan yang Cepat, Transparan, dan Tanpa Pungli.</p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 20px;">Link Terkait</h4>
+                <ul style="opacity: 0.6; display: grid; gap: 10px;">
+                    <li><a href="#">OSS - RBA</a></li>
+                    <li><a href="#">SiCantik Cloud</a></li>
+                    <li><a href="#">Sistem SIMBG</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 20px;">Kontak</h4>
+                <p style="opacity: 0.6;">Jl. Jend. Sudirman No. 1, Kompleks Perkantoran Bupati Luwu, Belopa.</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="container"><p>&copy; <span id="footerYear">2026</span> <span>DPMPTSP Kabupaten Luwu</span>. Hak Cipta Dilindungi.</p></div>
+            &copy; 2026 DPMPTSP Kab. Luwu - Dashboard Dinamis Anti-Bug System.
         </div>
     </footer>
 
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose">✖</button>
-        <img src="" alt="" class="lightbox-img" id="lightboxImg">
-        <div class="lightbox-caption" id="lightboxCaption"></div>
-    </div>
-    
-    <button class="back-to-top" id="backToTop">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="18 15 12 9 6 15"/></svg>
-    </button>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => { initApp(); });
+        /* =========================================================
+           🚀 LOGIKA CERDAS: SINKRONISASI GOOGLE SHEETS (CSV)
+           ========================================================= */
+        
+        // 1. GANTI LINK DI BAWAH INI DENGAN LINK CSV BOS!
+        const GOOGLE_SHEET_CSV = "LINK_CSV_GOOGLE_SHEETS_BOS_DI_SINI"; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initClock();
+            initApp();
+            initUI();
+        });
 
         async function initApp() {
-            startClock();
-            initScrollReveal();
-            await loadAllData();
-            initNavigation();
-            initBackToTop();
-            hidePreloader();
-        }
-
-        // --- CORE UI FUNCTIONS ---
-        function hidePreloader() { 
-            setTimeout(() => { document.getElementById('preloader').classList.add('hidden'); }, 600); 
-        }
-
-        function startClock() { updateClock(); setInterval(updateClock, 1000); }
-        function updateClock() {
-            const now = new Date();
-            const jam = now.getHours().toString().padStart(2, '0');
-            const menit = now.getMinutes().toString().padStart(2, '0');
-            const detik = now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('jamDigital').textContent = `${jam}:${menit}:${detik}`;
-
-            const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-            const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-            document.getElementById('tanggalHari').textContent = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
-            document.getElementById('footerYear').textContent = now.getFullYear();
-        }
-
-        // --- SCROLL REVEAL ANIMATION ---
-        function initScrollReveal() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        }
-
-        // --- DATA FETCHING ---
-        async function loadAllData() {
             try {
-                // Mock data cadangan
-                const mockKegiatan = [
-                    { judul: "Bimbingan Teknis LKPM", tanggal: "2026-05-05", deskripsi: "Bimbingan teknis tata cara pengisian Laporan Kegiatan Penanaman Modal secara online.", foto: "https://images.unsplash.com/photo-1542744094-24638ea0b3b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-                    { judul: "Sosialisasi OSS RBA", tanggal: "2026-05-01", deskripsi: "Pelaksanaan sosialisasi sistem OSS RBA kepada para pelaku usaha.", foto: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-                    { judul: "Rapat Pelayanan Terpadu", tanggal: "2026-04-15", deskripsi: "Rapat lintas sektor membahas percepatan pelayanan izin.", foto: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
-                ];
-                const mockPengumuman = [
-                    { judul: "Layanan Berbantuan OSS", isi: "Telah dibuka loket khusus layanan berbantuan pembuatan NIB di MPP." }
-                ];
-                const mockLayanan = [
-                    { nama: "Izin Mendirikan Bangunan (PBG)", syarat: "KTP, Sertifikat Tanah, Denah Bangunan", waktu: "14 Hari Kerja" },
-                    { nama: "Nomor Induk Berusaha (NIB)", syarat: "KTP, NPWP, Surat Keterangan Usaha", waktu: "1 Hari Kerja" }
-                ];
+                const response = await fetch(GOOGLE_SHEET_CSV);
+                const dataText = await response.text();
+                
+                // Parser CSV Cerdas (Mengatasi Koma dalam Teks)
+                const rows = dataText.split('\n').slice(1).map(row => {
+                    const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    return columns.map(c => c.replace(/^"|"$/g, "").trim());
+                });
 
-                const fetchSafe = async (url, fallbackData) => {
-                    try {
-                        const res = await fetch(url);
-                        if (!res.ok) return fallbackData;
-                        return await res.json();
-                    } catch (e) {
-                        return fallbackData;
-                    }
+                const data = {
+                    kegiatan: rows.filter(r => r[0] === 'kegiatan'),
+                    pengumuman: rows.filter(r => r[0] === 'pengumuman'),
+                    layanan: rows.filter(r => r[0] === 'layanan')
                 };
 
-                const kegiatan = await fetchSafe('data/kegiatan.json', mockKegiatan);
-                const pengumuman = await fetchSafe('data/pengumuman.json', mockPengumuman);
-                const layanan = await fetchSafe('data/layanan.json', mockLayanan);
-
-                renderAll(kegiatan, pengumuman, layanan);
-                setTimeout(() => initScrollReveal(), 100);
-
+                renderAll(data);
+                hidePreloader();
             } catch (err) {
-                showErrorState();
+                console.error("Gagal Sinkronisasi:", err);
+                document.getElementById('preloader').innerHTML = "<h2>⚠️ Gagal Terhubung ke Google Sheets</h2><p>Cek kembali Link CSV bos.</p>";
             }
         }
 
-        function showErrorState() {
-            const pesanError = '<p style="color:#ef4444;text-align:center;padding:30px;grid-column:1/-1;font-weight:700;font-size:1.2rem;background:#fee2e2;border-radius:15px;">⚠️ Gagal memuat data sistem.</p>';
-            document.getElementById('kegiatanPreview').innerHTML = pesanError;
-            document.getElementById('kegiatanAll').innerHTML = pesanError;
-            document.getElementById('galeriGrid').innerHTML = pesanError;
-            document.getElementById('pengumumanList').innerHTML = pesanError;
-            document.getElementById('layananTableBody').innerHTML = `<tr><td colspan="4" style="text-align:center;color:#ef4444;font-weight:700;padding:30px;">⚠️ Data layanan gagal dimuat</td></tr>`;
-        }
+        function renderAll(data) {
+            // Stats Counter
+            animateCounter('valKegiatan', data.kegiatan.length);
+            animateCounter('valPengumuman', data.pengumuman.length);
+            animateCounter('valLayanan', data.layanan.length);
 
-        // --- RENDERING ---
-        function renderAll(kegiatan, pengumuman, layanan) {
-            renderStats(kegiatan, pengumuman, layanan);
-            renderRunningText(pengumuman);
-            renderHeroSlider(kegiatan);
-            renderKegiatanPreview(kegiatan);
-            renderKegiatanAll(kegiatan);
-            renderGaleri(kegiatan);
-            renderPengumuman(pengumuman);
-            renderLayanan(layanan);
-        }
-
-        function renderStats(kegiatan, pengumuman, layanan) {
-            animateValue("countKegiatan", 0, kegiatan.length, 2000);
-            animateValue("countPengumuman", 0, pengumuman.length, 2000);
-            animateValue("countLayanan", 0, layanan.length, 2000);
-            const fotoUnik = new Set(kegiatan.filter(k => k.foto).map(k => k.foto));
-            animateValue("countGaleri", 0, fotoUnik.size, 2000);
-
-            document.getElementById('kegiatanCountLabel').textContent = `${kegiatan.length} Publikasi`;
-            document.getElementById('pengumumanCountLabel').textContent = `${pengumuman.length} Informasi`;
-            document.getElementById('galeriCountLabel').textContent = `${fotoUnik.size} Foto`;
-        }
-
-        function animateValue(id, start, end, duration) {
-            if (start === end) return;
-            let current = start;
-            const range = end - start;
-            const increment = end > start ? 1 : -1;
-            const stepTime = Math.abs(Math.floor(duration / range));
-            const obj = document.getElementById(id);
-            const timer = setInterval(function() {
-                current += increment;
-                obj.textContent = current;
-                if (current == end) { clearInterval(timer); }
-            }, stepTime);
-        }
-
-        function renderRunningText(pengumuman) {
-            if (pengumuman.length === 0) return;
-            const gabung = pengumuman.map(p => `${p.judul} — ${p.isi}`).join('  •  ');
-            document.getElementById('runningText').innerHTML = `<span class="running-label">📢 LIVE INFO</span><span class="running-separator">•</span><span class="running-content">${gabung}</span>`;
-        }
-
-        let slideIndex = 0; let slideInterval; let slideItems = [];
-        function renderHeroSlider(kegiatan) {
+            // Slider & News Ticker
             const track = document.getElementById('sliderTrack');
-            const dots = document.getElementById('sliderDots');
-            const slides = kegiatan.length > 0 ? kegiatan.slice(0, 5) : [{ judul: 'DPMPTSP Luwu', deskripsi: 'Melayani dengan Profesional', foto: '' }];
-            slideItems = slides;
+            const ticker = document.getElementById('runningTrack');
+            let tickerText = "";
 
-            track.innerHTML = slides.map(k => `
-                <div class="slider-slide">
-                    ${k.foto ? `<img src="${k.foto}" alt="${k.judul}">` : '<div style="width:100%;height:100%;background:linear-gradient(135deg, var(--primary), var(--primary-light))"></div>'}
-                    <div class="slider-slide-overlay">
-                        <h3>${k.judul}</h3>
-                        <p>${k.deskripsi || ''}</p>
-                    </div>
-                </div>
-            `).join('');
-
-            dots.innerHTML = slides.map((_, i) => `<button class="slider-dot ${i===0?'active':''}" data-index="${i}"></button>`).join('');
-            dots.querySelectorAll('.slider-dot').forEach(dot => dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index))));
-            document.getElementById('sliderPrev').addEventListener('click', prevSlide);
-            document.getElementById('sliderNext').addEventListener('click', nextSlide);
-
-            updateSlidePosition(); startSlideAuto();
-        }
-
-        function updateSlidePosition() {
-            document.getElementById('sliderTrack').style.transform = `translateX(-${slideIndex * 100}%)`;
-            document.querySelectorAll('.slider-dot').forEach((dot, i) => dot.classList.toggle('active', i === slideIndex));
-        }
-        function nextSlide() { slideIndex = (slideIndex + 1) % slideItems.length; updateSlidePosition(); resetSlideAuto(); }
-        function prevSlide() { slideIndex = (slideIndex - 1 + slideItems.length) % slideItems.length; updateSlidePosition(); resetSlideAuto(); }
-        function goToSlide(index) { slideIndex = index; updateSlidePosition(); resetSlideAuto(); }
-        function startSlideAuto() { slideInterval = setInterval(nextSlide, 5000); }
-        function resetSlideAuto() { clearInterval(slideInterval); startSlideAuto(); }
-
-        function renderKegiatanPreview(kegiatan) {
-            const container = document.getElementById('kegiatanPreview');
-            const preview = [...kegiatan].sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal)).slice(0, 3);
-            container.innerHTML = preview.map((k, i) => createKegiatanCard(k, i)).join('');
-        }
-
-        function renderKegiatanAll(kegiatan) {
-            const container = document.getElementById('kegiatanAll');
-            const sorted = [...kegiatan].sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
-            container.innerHTML = sorted.map((k, i) => createKegiatanCard(k, i)).join('');
-        }
-
-        function createKegiatanCard(k, index) {
-            const tgl = formatTanggal(k.tanggal);
-            const imgTag = k.foto ? `<img src="${k.foto}" alt="${k.judul}" class="kegiatan-card-img" loading="lazy">` : `<div class="kegiatan-card-img" style="background:var(--primary-soft);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:50px;">📰</div>`;
-            const delay = (index % 3) + 1;
-            return `
-                <article class="kegiatan-card reveal reveal-delay-${delay}">
-                    <div class="kegiatan-card-img-wrap">
-                        ${imgTag}
-                        <div class="kegiatan-overlay"></div>
-                    </div>
-                    <div class="kegiatan-card-body">
-                        <span class="kegiatan-card-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${tgl}</span>
-                        <h3 class="kegiatan-card-title">${k.judul}</h3>
-                        <p class="kegiatan-card-desc">${k.deskripsi || ''}</p>
-                    </div>
-                </article>
-            `;
-        }
-
-        function renderGaleri(kegiatan) {
-            const container = document.getElementById('galeriGrid');
-            const fotoUnik = [...new Set(kegiatan.filter(k => k.foto).map(k => k.foto))];
-            if (fotoUnik.length === 0) { container.innerHTML = '<p style="text-align:center;grid-column:1/-1;color:var(--gray-400);font-weight:500;">Belum ada foto</p>'; return; }
-
-            container.innerHTML = fotoUnik.map((foto, i) => {
-                const caption = kegiatan.find(k => k.foto === foto)?.judul || 'Dokumentasi Visual';
-                const delay = (i % 3) + 1;
-                return `
-                    <div class="galeri-item reveal reveal-delay-${delay}" data-src="${foto}" data-caption="${caption}">
-                        <img src="${foto}" alt="${caption}" loading="lazy">
-                        <div class="galeri-item-overlay"><span class="galeri-caption">${caption}</span></div>
-                    </div>
-                `;
-            }).join('');
-            initLightbox();
-        }
-
-        function initLightbox() {
-            const lb = document.getElementById('lightbox'); const img = document.getElementById('lightboxImg'); const cap = document.getElementById('lightboxCaption');
-            document.querySelectorAll('.galeri-item').forEach(item => {
-                item.addEventListener('click', () => { img.src = item.dataset.src; cap.textContent = item.dataset.caption; lb.classList.add('active'); });
+            data.kegiatan.slice(0, 5).forEach(k => {
+                track.innerHTML += `
+                    <div class="slider-slide">
+                        <img src="${k[4] || 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0'}" alt="slide">
+                        <div class="slider-overlay">
+                            <h2>${k[1]}</h2>
+                            <p>${k[3].substring(0, 150)}...</p>
+                        </div>
+                    </div>`;
             });
-            document.getElementById('lightboxClose').addEventListener('click', () => { lb.classList.remove('active'); img.src=''; });
+
+            // Berita List
+            const kList = document.getElementById('kegiatanList');
+            data.kegiatan.forEach(k => {
+                kList.innerHTML += `
+                    <div class="card reveal">
+                        <img src="${k[4] || 'https://images.unsplash.com/photo-1497366216548-37526070297c'}" class="card-img" alt="foto">
+                        <div class="card-body">
+                            <span class="card-tag">📅 ${k[2]}</span>
+                            <h3 class="card-title">${k[1]}</h3>
+                            <p style="color:var(--gray-600); font-size:0.95rem;">${k[3]}</p>
+                        </div>
+                    </div>`;
+            });
+
+            // Pengumuman List
+            const pList = document.getElementById('pengumumanList');
+            data.pengumuman.forEach(p => {
+                tickerText += ` • ${p[1]} : ${p[3]} `;
+                pList.innerHTML += `
+                    <div class="pengumuman-item reveal">
+                        <h3>📢 ${p[1]}</h3>
+                        <p style="margin-top:10px; opacity:0.8;">${p[3]}</p>
+                    </div>`;
+            });
+            ticker.innerText = tickerText;
+
+            // Layanan Table
+            const lTable = document.getElementById('layananTable');
+            data.layanan.forEach(l => {
+                lTable.innerHTML += `
+                    <tr class="reveal">
+                        <td><strong>${l[1]}</strong></td>
+                        <td style="font-size:0.9rem; opacity:0.7;">${l[5]}</td>
+                        <td><span class="badge-time">⏳ ${l[6]}</span></td>
+                    </tr>`;
+            });
+
+            startSlider();
+            initReveal();
         }
 
-        function renderPengumuman(pengumuman) {
-            const container = document.getElementById('pengumumanList');
-            if (pengumuman.length === 0) { container.innerHTML = '<p style="color:var(--gray-400);font-weight:500;">Tidak ada pengumuman</p>'; return; }
-            container.innerHTML = pengumuman.map((p, i) => `
-                <div class="pengumuman-item reveal reveal-delay-${(i%2)+1}">
-                    <div class="pengumuman-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg></div>
-                    <div class="pengumuman-content"><h4>${p.judul}</h4><p>${p.isi}</p></div>
-                </div>
-            `).join('');
+        // --- UI UTILS ---
+        function hidePreloader() { document.getElementById('preloader').classList.add('hidden'); }
+        
+        function initClock() {
+            setInterval(() => {
+                document.getElementById('digitalClock').innerText = new Date().toLocaleTimeString('id-ID');
+            }, 1000);
         }
 
-        function renderLayanan(layanan) {
-            const tbody = document.getElementById('layananTableBody');
-            if (layanan.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--gray-400);font-weight:500;">Belum ada data</td></tr>'; return; }
-            tbody.innerHTML = layanan.map((l, i) => `
-                <tr>
-                    <td><b style="color:var(--primary-light)">0${i + 1}</b></td>
-                    <td><strong>${l.nama}</strong></td>
-                    <td>${l.syarat}</td>
-                    <td><span class="badge-waktu"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${l.waktu}</span></td>
-                </tr>
-            `).join('');
+        function animateCounter(id, target) {
+            let count = 0;
+            let speed = 2000 / target;
+            let timer = setInterval(() => {
+                count++;
+                document.getElementById(id).innerText = count;
+                if(count >= target) clearInterval(timer);
+            }, speed);
         }
 
-        function initNavigation() {
-            const header = document.getElementById('header');
-            const toggle = document.getElementById('navToggle'); 
-            const menu = document.getElementById('navMenu'); 
-            const links = document.querySelectorAll('.nav-link');
+        function initReveal() {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+        }
+
+        function startSlider() {
+            let pos = 0;
+            const track = document.getElementById('sliderTrack');
+            setInterval(() => {
+                pos = (pos + 1) % track.children.length;
+                track.style.transform = `translateX(-${pos * 100}%)`;
+            }, 5000);
+        }
+
+        function initUI() {
+            const toggle = document.getElementById('navToggle');
+            const menu = document.getElementById('navMenu');
+            toggle.onclick = () => menu.classList.toggle('open');
             
-            toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.classList.toggle('active'); });
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) { header.classList.add('scrolled'); } 
-                else { header.classList.remove('scrolled'); }
-
-                let current = 'beranda';
-                document.querySelectorAll('section[id]').forEach(sec => { if (window.scrollY >= sec.offsetTop - 200) current = sec.getAttribute('id'); });
-                links.forEach(link => link.classList.toggle('active', link.dataset.section === current));
-            });
-
-            links.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    const target = document.querySelector(link.getAttribute('href'));
-                    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); menu.classList.remove('open'); }
-                });
-            });
-        }
-
-        function initBackToTop() {
-            const btn = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 500) btn.classList.add('visible');
-                else btn.classList.remove('visible');
-            });
-            btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        }
-
-        function formatTanggal(tglStr) {
-            if (!tglStr) return '-';
-            try {
-                const tgl = new Date(tglStr); if (isNaN(tgl.getTime())) return tglStr;
-                const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-                return `${tgl.getDate()} ${bulan[tgl.getMonth()]} ${tgl.getFullYear()}`;
-            } catch { return tglStr; }
+            window.onscroll = () => {
+                const header = document.querySelector('.header');
+                header.style.padding = window.scrollY > 50 ? "5px 0" : "15px 0";
+            }
         }
     </script>
 </body>
