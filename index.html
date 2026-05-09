@@ -151,7 +151,18 @@
         .pengumuman-item { padding: 35px; background: var(--white); border-radius: var(--radius-lg); display: flex; gap: 25px; align-items: center; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100); transition: 0.3s; position: relative; overflow: hidden;}
         .pengumuman-item::before { content: ''; position: absolute; left: 0; top: 0; width: 6px; height: 100%; background: var(--accent); border-radius: 6px 0 0 6px;}
         .pengumuman-item:hover { transform: translateX(10px); }
-        .pengumuman-icon { font-size: 2.5rem; background: rgba(13, 148, 136, 0.1); color: var(--accent); width: 80px; height: 80px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 20px; }
+        .pengumuman-icon {
+			    font-size: 2.5rem;
+			    background: var(--primary-soft); /* Kotak biru muda */
+			    color: var(--primary-light);     /* Ikon biru tua */
+			    width: 70px;
+			    height: 70px;
+			    flex-shrink: 0;
+			    display: flex;
+			    align-items: center;
+			    justify-content: center;
+			    border-radius: 18px; /* Sudut membulat mewah */
+			}
         .pengumuman-content h4 { font-size: 1.3rem; color: var(--primary); margin-bottom: 8px; font-weight: 800;}
         .pengumuman-content p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.6; margin: 0;}
 
@@ -525,7 +536,10 @@
                         ${k.foto ? `<img src="${k.foto}" class="kegiatan-card-img">` : '<div class="kegiatan-card-img" style="background:#eee"></div>'}
                     </div>
                     <div class="kegiatan-card-body">
-                        <span class="kegiatan-card-date">📅 ${k.tanggal}</span>
+                        <span class="kegiatan-card-date">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            ${k.tanggal}
+                        </span>
                         <h3 class="kegiatan-card-title">${k.judul}</h3>
                         <p class="kegiatan-card-desc">${k.deskripsi}</p>
                     </div>
@@ -553,18 +567,33 @@
         function renderPengumuman(p) {
             document.getElementById('pengumumanList').innerHTML = p.map(i => `
                 <div class="pengumuman-item reveal">
-                    <div class="pengumuman-icon">📢</div>
-                    <div class="pengumuman-content"><h4>${i.judul}</h4><p>${i.isi}</p></div>
+                    <div class="pengumuman-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    </div>
+                    <div class="pengumuman-content">
+                        <h4>${i.judul}</h4>
+                        <p>${i.isi}</p>
+                    </div>
                 </div>`).join('');
         }
 
         function renderLayanan(l) {
             document.getElementById('layananTableBody').innerHTML = l.map((item, i) => `
                 <tr>
-                    <td><b>0${i + 1}</b></td>
-                    <td><strong>${item.nama}</strong></td>
-                    <td style="font-size:0.9rem">${item.syarat}</td>
-                    <td><span class="badge-waktu">⏳ ${item.waktu}</span></td>
+                    <td><b style="color:var(--primary-light)">0${i + 1}</b></td>
+                    <td>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            <strong>${item.nama}</strong>
+                        </div>
+                    </td>
+                    <td style="font-size:0.9rem; color:var(--gray-600);">${item.syarat}</td>
+                    <td>
+                        <span class="badge-waktu">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            ${item.waktu}
+                        </span>
+                    </td>
                 </tr>`).join('');
         }
 
