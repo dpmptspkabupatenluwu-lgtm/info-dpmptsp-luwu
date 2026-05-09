@@ -12,7 +12,7 @@
 
     <style>
         /* =========================================================
-           💎 TEMA: DEEP OCEAN & AQUA GLOW (ULTRA LUXURY)
+           ðŸ’Ž TEMA: DEEP OCEAN & AQUA GLOW (ULTRA LUXURY)
            ========================================================= */
         :root {
             --primary: #0f172a;       /* Deep Navy */
@@ -144,8 +144,8 @@
                 <div class="brand">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Coat_of_arms_of_Luwu_Regency.svg" class="brand-logo" alt="Logo Luwu">
                     <div>
-                        <span class="dept-title">DPMPTSP KAB. LUWU</span>
-                        <span class="dept-sub">Pelayanan Terpadu Satu Pintu</span>
+                        <span class="dept-title">DINAS PENANAMAN MODAL DAN PELAYANAN TEPADU SATU PINTU</span>
+                        <span class="dept-sub">KABUPATEN LUWU</span>
                     </div>
                 </div>
                 <div id="digitalClock" style="font-weight: 800; color: var(--primary-light); font-size: 1.1rem;">00:00:00</div>
@@ -249,7 +249,7 @@
 
     <script>
         /* =========================================================
-           🚀 LOGIKA CERDAS: SINKRONISASI GOOGLE SHEETS (CSV)
+           ðŸš€ LOGIKA CERDAS: SINKRONISASI GOOGLE SHEETS (CSV)
            ========================================================= */
         
         // 1. GANTI LINK DI BAWAH INI DENGAN LINK CSV BOS!
@@ -282,7 +282,7 @@
                 hidePreloader();
             } catch (err) {
                 console.error("Gagal Sinkronisasi:", err);
-                document.getElementById('preloader').innerHTML = "<h2>⚠️ Gagal Terhubung ke Google Sheets</h2><p>Cek kembali Link CSV bos.</p>";
+                document.getElementById('preloader').innerHTML = "<h2>âš ï¸ Gagal Terhubung ke Google Sheets</h2><p>Cek kembali Link CSV bos.</p>";
             }
         }
 
@@ -315,7 +315,7 @@
                     <div class="card reveal">
                         <img src="${k[4] || 'https://images.unsplash.com/photo-1497366216548-37526070297c'}" class="card-img" alt="foto">
                         <div class="card-body">
-                            <span class="card-tag">📅 ${k[2]}</span>
+                            <span class="card-tag">ðŸ“… ${k[2]}</span>
                             <h3 class="card-title">${k[1]}</h3>
                             <p style="color:var(--gray-600); font-size:0.95rem;">${k[3]}</p>
                         </div>
@@ -325,10 +325,10 @@
             // Pengumuman List
             const pList = document.getElementById('pengumumanList');
             data.pengumuman.forEach(p => {
-                tickerText += ` • ${p[1]} : ${p[3]} `;
+                tickerText += ` â€¢ ${p[1]} : ${p[3]} `;
                 pList.innerHTML += `
                     <div class="pengumuman-item reveal">
-                        <h3>📢 ${p[1]}</h3>
+                        <h3>ðŸ“¢ ${p[1]}</h3>
                         <p style="margin-top:10px; opacity:0.8;">${p[3]}</p>
                     </div>`;
             });
@@ -341,7 +341,7 @@
                     <tr class="reveal">
                         <td><strong>${l[1]}</strong></td>
                         <td style="font-size:0.9rem; opacity:0.7;">${l[5]}</td>
-                        <td><span class="badge-time">⏳ ${l[6]}</span></td>
+                        <td><span class="badge-time">â³ ${l[6]}</span></td>
                     </tr>`;
             });
 
