@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portal Informasi DPMPTSP Kabupaten Luwu - Layanan Perizinan Terpadu">
+    <meta name="description" content="Portal Informasi DPMPTSP Kabupaten Luwu - Informasi Pelayanan Ringkas dan Praktis">
     <title>DPMPTSP Kabupaten Luwu | Portal Pelayanan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,7 @@
     <style>
     :root {
         --bg: #f3f7fb;
+        --white: #ffffff;
         --glass: rgba(255, 255, 255, 0.75);
         --glass-border: rgba(255, 255, 255, 0.6);
         --glass-shadow: 0 10px 40px rgba(15, 23, 42, 0.06);
@@ -19,12 +20,15 @@
         
         --primary: #0f172a;
         --primary-light: #1e293b;
-        --primary-soft: #eef2ff;   /* ← tambahkan ini agar icon background muncul */
+        --primary-soft: #eef2ff;
         --accent: #2563eb;
         --accent-deep: #1d4ed8;
         --accent-glow: rgba(37, 99, 235, 0.3);
         --cyan: #0891b2;
         --cyan-glow: rgba(8, 145, 178, 0.25);
+        --danger: #dc2626;
+        --warning: #f59e0b;
+        --success: #10b981;
         
         --text-primary: #0f172a;
         --text-secondary: #475569;
@@ -44,8 +48,6 @@
         -webkit-font-smoothing: antialiased;
         min-height: 100vh; position: relative;
     }
-
-    /* Ambient Background Orb */
     body::before {
         content: ''; position: fixed; top: -10%; left: -5%; width: 50vw; height: 50vw;
         background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
@@ -66,7 +68,7 @@
     
     .icon-svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
-    /* Header & Navigasi */
+    /* Header */
     .header-top-bar { 
         background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(0,0,0,0.03); color: var(--text-secondary); font-size: 0.85rem; padding: 12px 0; font-weight: 500;
@@ -96,7 +98,6 @@
     .clock-digital { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-variant-numeric: tabular-nums; line-height: 1.1; }
     .clock-date { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; letter-spacing: 0.5px; }
 
-    /* Running Text */
     .running-text-wrapper { 
         background: linear-gradient(90deg, var(--primary), var(--primary-light));
         color: white; padding: 12px 0; overflow: hidden; position: relative; z-index: 10;
@@ -105,13 +106,13 @@
     .running-text-track { display: inline-block; white-space: nowrap; animation: marquee 35s linear infinite; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px; }
     @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-    /* Navbar Pills */
+    /* Navbar */
     .nav-menu { display: flex; justify-content: center; gap: 10px; padding: 12px 0; }
     .nav-link { padding: 10px 24px; font-weight: 700; font-size: 0.9rem; color: var(--text-secondary); border-radius: 50px; transition: var(--transition); border: 1px solid transparent; }
     .nav-link:hover { color: var(--accent); background: rgba(37, 99, 235, 0.08); }
     .nav-link.active { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); color: white; box-shadow: 0 8px 20px var(--accent-glow); }
 
-    /* Hero Slider */
+    /* Hero */
     .hero-slider { 
         height: 500px; border-radius: var(--radius-lg); overflow: hidden; 
         background: var(--primary); position: relative; margin: 30px 0; 
@@ -132,7 +133,7 @@
     .slider-btn:hover { background: var(--white); color: var(--primary); box-shadow: 0 10px 25px rgba(0,0,0,0.2); transform: translateY(-50%) scale(1.1); }
     .slider-prev { left: 30px; } .slider-next { right: 30px; }
 
-    /* Stats Grid */
+    /* Stats */
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: -60px; position: relative; z-index: 100; }
     .stat-card {
         background: var(--glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
@@ -149,13 +150,14 @@
     .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); line-height: 1; margin-bottom: 4px; }
     .stat-label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-    /* Sections & Cards */
+    /* Sections */
     .section { padding: 90px 0; position: relative; z-index: 1; }
     .section-alt { background: rgba(255,255,255,0.5); }
     .section-header { margin-bottom: 50px; text-align: center; }
     .section-title { font-size: 2.2rem; font-weight: 800; color: var(--text-primary); position: relative; padding-bottom: 16px; display: inline-block; letter-spacing: -0.5px; }
     .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 5px; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 10px; }
 
+    /* Kegiatan Cards */
     .kegiatan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
     .kegiatan-card { 
         background: var(--white); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); 
@@ -172,16 +174,33 @@
     .kegiatan-card-body p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
 
     /* Pengumuman */
-    .pengumuman-item { 
-        background: var(--white); border: 1px solid var(--glass-border); padding: 30px; border-radius: var(--radius-md); 
-        display: flex; align-items: center; gap: 24px; margin-bottom: 20px; box-shadow: var(--glass-shadow); transition: var(--transition); position: relative; overflow: hidden;
+    .pengumuman-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; }
+    .pengumuman-card {
+        background: var(--white); border-radius: var(--radius-md); padding: 24px; display: flex; align-items: flex-start; gap: 16px;
+        box-shadow: var(--glass-shadow); border-left: 6px solid var(--accent); transition: var(--transition); position: relative; overflow: hidden;
     }
-    .pengumuman-item::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, var(--accent), var(--cyan)); }
-    .pengumuman-item:hover { transform: translateX(10px); box-shadow: 0 20px 40px rgba(15,23,42,0.08); }
-    .pengumuman-icon { background: var(--primary-soft); color: var(--accent); width: 70px; height: 70px; border-radius: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: var(--transition); }
-    .pengumuman-item:hover .pengumuman-icon { background: linear-gradient(135deg, var(--accent), var(--cyan)); color: white; transform: rotate(-10deg) scale(1.05); }
-    .pengumuman-item h4 { font-size: 1.2rem; margin-bottom: 6px; font-weight: 800; color: var(--text-primary); }
-    .pengumuman-item p { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; }
+    .pengumuman-card::after { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%); border-radius: 0 0 0 80px; }
+    .pengumuman-card.warning { border-left-color: var(--warning); }
+    .pengumuman-card.danger { border-left-color: var(--danger); }
+    .pengumuman-card.success { border-left-color: var(--success); }
+    .pengumuman-card:hover { transform: translateX(6px); box-shadow: 0 20px 40px rgba(15,23,42,0.1); }
+    .pengumuman-icon-large { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; font-size: 24px; }
+    .pengumuman-card .content h4 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; color: var(--text-primary); }
+    .pengumuman-card .content p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+
+    /* Panduan Cepat */
+    .panduan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .panduan-card {
+        background: var(--white); border-radius: var(--radius-md); padding: 28px; text-align: center; transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.04); box-shadow: var(--glass-shadow); position: relative; overflow: hidden;
+    }
+    .panduan-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--accent), var(--cyan)); }
+    .panduan-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(15,23,42,0.08); }
+    .panduan-icon { width: 70px; height: 70px; margin: 0 auto 18px; background: var(--primary-soft); border-radius: 24px; display: flex; align-items: center; justify-content: center; color: var(--accent); transition: 0.3s; }
+    .panduan-card:hover .panduan-icon { background: linear-gradient(135deg, var(--accent), var(--cyan)); color: white; transform: scale(1.1) rotate(-5deg); }
+    .panduan-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 10px; color: var(--text-primary); }
+    .panduan-card ul { text-align: left; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; padding-left: 20px; }
+    .panduan-card ul li { list-style-type: disc; margin-bottom: 6px; }
 
     /* Table Layanan */
     .table-wrapper { 
@@ -190,69 +209,16 @@
     }
     .layanan-table { width: 100%; border-collapse: collapse; min-width: 600px; }
     .layanan-table th { background: var(--bg); color: var(--text-primary); padding: 24px; text-align: left; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-    .layanan-table td { padding: 24px; border-bottom: 1px solid var(--gray-100); color: var(--text-secondary); transition: var(--transition); }
+    .layanan-table td { padding: 24px; border-bottom: 1px solid #e2e8f0; color: var(--text-secondary); transition: var(--transition); }
     .layanan-table tbody tr:hover { background: var(--primary-soft); }
     .badge-waktu { background: var(--primary-soft); color: var(--accent); padding: 8px 16px; border-radius: 30px; font-weight: 800; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; }
 
-    /* Mobile Responsive */
-    @media (max-width: 992px) {
-        .stats-grid { grid-template-columns: repeat(2, 1fr); margin-top: -40px; }
-        .stats-grid .stat-card:last-child { grid-column: 1 / -1; }
-        .hero-slider { height: 400px; }
-    }
-
-    @media (max-width: 768px) {
-        .container { padding: 0 20px; }
-        .header-main-content { flex-direction: column; text-align: center; padding: 16px 0 10px; gap: 12px; }
-        .brand { flex-direction: column; gap: 10px; }
-        .brand-logo-img { height: 44px; }
-        .brand-text { border-left: none; padding-left: 0; align-items: center; }
-        .dept-title { font-size: 1.1rem; }
-        
-        .header-clock { border-left: none; padding-left: 0; border-top: 1px solid var(--gray-100); padding-top: 12px; width: 100%; }
-        .clock-digital { font-size: 1.35rem; }
-
-        .header-contact { justify-content: center; gap: 16px; font-size: 0.8rem; }
-
-        .nav-menu { 
-            justify-content: flex-start; overflow-x: auto; padding: 10px 5px 15px; gap: 10px; 
-            scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; 
-        }
-        .nav-menu::-webkit-scrollbar { display: none; }
-        .nav-link { scroll-snap-align: start; white-space: nowrap; padding: 10px 20px; background: var(--white); border: 1px solid var(--gray-100); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .nav-link.active { border-color: transparent; }
-
-        .hero-slider { height: 350px; border-radius: var(--radius-md); margin: 15px 0; }
-        .slider-slide-overlay { padding: 30px 20px; text-align: center; align-items: center; }
-        .slider-slide-overlay h3 { font-size: 1.8rem; margin-bottom: 15px; text-align: center; }
-        .slider-slide-overlay p { font-size: 0.9rem; border-left: none; padding: 10px 15px; border-radius: 12px; text-align: center; }
-        .slider-btn { width: 44px; height: 44px; }
-        .slider-prev { left: 15px; } .slider-next { right: 15px; }
-
-        .stats-grid { grid-template-columns: 1fr; margin-top: 20px; gap: 16px; }
-        .stat-card { padding: 20px; }
-        .stat-icon-wrap { width: 56px; height: 56px; }
-        .stat-number { font-size: 2rem; }
-
-        .section { padding: 60px 0; }
-        .section-title { font-size: 1.8rem; }
-        
-        .kegiatan-grid { grid-template-columns: 1fr; gap: 20px; }
-        .kegiatan-card-img-wrap { height: 200px; }
-        
-        .pengumuman-item { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; border-left-width: 4px; }
-        .pengumuman-icon { width: 56px; height: 56px; border-radius: 14px; }
-        
-        .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 35px; }
-        .footer-col h4 { border-left: none; padding-left: 0; }
-        .footer-links li { justify-content: center; }
-    }
-
-    /* Footer & Utilitas */
+    /* Footer */
     .footer { background: var(--primary); color: var(--text-muted); padding: 80px 0 30px; position: relative; z-index: 1; margin-top: 50px; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-bottom: 50px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px; }
     .footer-col h4 { margin-bottom: 24px; font-size: 1.2rem; font-weight: 800; color: white; border-left: 4px solid var(--accent); padding-left: 16px; }
-    .footer-links li { margin-bottom: 16px; display: flex; align-items: center; gap: 12px; opacity: 0.8; font-size: 0.95rem; }
+    .footer-links li { margin-bottom: 16px; display: flex; align-items: center; gap: 12px; opacity: 0.8; font-size: 0.95rem; line-height: 1.6; }
+    .footer-links li svg { flex-shrink: 0; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; text-align: center; opacity: 0.6; font-size: 0.9rem; }
 
     .back-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, var(--accent), var(--cyan)); color: white; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: var(--transition); z-index: 1000; box-shadow: 0 10px 30px var(--accent-glow); transform: translateY(20px); border: none; }
@@ -271,36 +237,31 @@
 <body>
     <div class="preloader" id="preloader">
         <div class="spinner-ring"></div>
-        <div style="margin-top:20px; font-weight:800; color:var(--text-primary); letter-spacing:2px; font-size: 0.9rem;">DPMPTSP LUWU</div>
+        <div style="margin-top:20px; font-weight:800; color:var(--text-primary); letter-spacing:2px; font-size:0.9rem;">DPMPTSP LUWU</div>
     </div>
 
+    <!-- Top Bar -->
     <div class="header-top-bar">
         <div class="container">
             <div class="header-top-content">
                 <div class="header-contact">
-                    <span>
-                        <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        (0471) 21000
-                    </span>
-                    <span>
-                        <svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        dpmptsp@luwukab.go.id
-                    </span>
+                    <span><svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (0471) 21000</span>
+                    <span><svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> dpmptsp@luwukab.go.id</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <header class="header" id="header">
+    <header class="header">
         <div class="container">
             <div class="header-main-content">
                 <div class="brand">
                     <div class="brand-logos">
-                        <img src="images/logo-luwu.png" class="brand-logo-img" alt="Logo Luwu" onerror="this.outerHTML='<span style=\'font-size:35px\'>🏛️</span>'">
-                        <img src="images/logo_dpmptsp.png" class="brand-logo-img" alt="Logo DPMPTSP" onerror="this.outerHTML='<span style=\'font-size:30px\'>🔒</span>'">
+                        <img src="images/logo-luwu.png" class="brand-logo-img" alt="Logo Luwu" onerror="this.outerHTML='<span style=font-size:35px>ðŸ›ï¸</span>'">
+                        <img src="images/logo_dpmptsp.png" class="brand-logo-img" alt="Logo DPMPTSP" onerror="this.outerHTML='<span style=font-size:30px>ðŸ”’</span>'">
                     </div>
                     <div class="brand-text">
-                        <div class="dept-title">DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU</div>
+                        <div class="dept-title"><h2>DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU</h2></div>
                         <div class="dept-sub">KABUPATEN LUWU</div>
                     </div>
                 </div>
@@ -312,8 +273,9 @@
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#beranda" class="nav-link active">Beranda</a></li>
-                    <li><a href="#kegiatan" class="nav-link">Kegiatan</a></li>
+                    <li><a href="#panduan" class="nav-link">Panduan Cepat</a></li>
                     <li><a href="#pengumuman" class="nav-link">Pengumuman</a></li>
+                    <li><a href="#kegiatan" class="nav-link">Kegiatan</a></li>
                     <li><a href="#layanan" class="nav-link">Layanan</a></li>
                 </ul>
             </nav>
@@ -325,35 +287,52 @@
     </div>
 
     <main>
+        <!-- Hero -->
         <section id="beranda" class="hero-section container">
             <div class="hero-slider">
                 <div class="slider-track" id="sliderTrack"></div>
-                <button class="slider-btn slider-prev" id="sliderPrev"><svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"/></svg></button>
-                <button class="slider-btn slider-next" id="sliderNext"><svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="9 18 15 12 9 6"/></svg></button>
+                <button class="slider-btn slider-prev" id="sliderPrev"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button class="slider-btn slider-next" id="sliderNext"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
             </div>
 
             <div class="stats-grid">
                 <div class="stat-card reveal">
-                    <div class="stat-icon-wrap">
-                        <svg class="icon-svg" style="width:30px;height:30px;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    </div>
-                    <div><div class="stat-number" id="countKegiatan">0</div><div class="stat-label">Kegiatan Publikasi</div></div>
+                    <div class="stat-icon-wrap"><svg class="icon-svg" style="width:30px;height:30px;" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                    <div><div class="stat-number" id="countKegiatan">0</div><div class="stat-label">Kegiatan</div></div>
                 </div>
                 <div class="stat-card reveal">
-                    <div class="stat-icon-wrap">
-                        <svg class="icon-svg" style="width:30px;height:30px;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    </div>
-                    <div><div class="stat-number" id="countPengumuman">0</div><div class="stat-label">Info & Pengumuman</div></div>
+                    <div class="stat-icon-wrap"><svg class="icon-svg" style="width:30px;height:30px;" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+                    <div><div class="stat-number" id="countPengumuman">0</div><div class="stat-label">Pengumuman</div></div>
                 </div>
                 <div class="stat-card reveal">
-                    <div class="stat-icon-wrap">
-                        <svg class="icon-svg" style="width:30px;height:30px;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    </div>
-                    <div><div class="stat-number" id="countLayanan">0</div><div class="stat-label">Standar Layanan</div></div>
+                    <div class="stat-icon-wrap"><svg class="icon-svg" style="width:30px;height:30px;" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                    <div><div class="stat-number" id="countLayanan">0</div><div class="stat-label">Layanan</div></div>
                 </div>
             </div>
         </section>
 
+        <!-- PANDUAN CEPAT -->
+        <section id="panduan" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Panduan Cepat</h2>
+                    <p style="margin-top:12px; color:var(--text-secondary); max-width:600px; margin-left:auto; margin-right:auto;">Informasi praktis untuk memudahkan Anda mengurus perizinan</p>
+                </div>
+                <div class="panduan-grid" id="panduanContainer"></div>
+            </div>
+        </section>
+
+        <!-- PENGUMUMAN -->
+        <section id="pengumuman" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Pengumuman Penting</h2>
+                </div>
+                <div class="pengumuman-grid" id="pengumumanContainer"></div>
+            </div>
+        </section>
+
+        <!-- KEGIATAN -->
         <section id="kegiatan" class="section">
             <div class="container">
                 <div class="section-header reveal">
@@ -363,23 +342,15 @@
             </div>
         </section>
 
-        <section id="pengumuman" class="section section-alt">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">Pusat Informasi</h2>
-                </div>
-                <div id="pengumumanContainer"></div>
-            </div>
-        </section>
-
-        <section id="layanan" class="section">
+        <!-- LAYANAN -->
+        <section id="layanan" class="section section-alt">
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="section-title">Standar Layanan</h2>
                 </div>
                 <div class="table-wrapper reveal">
                     <table class="layanan-table">
-                        <thead><tr><th>Jenis Layanan</th><th>Persyaratan</th><th>Waktu Penyelesaian</th></tr></thead>
+                        <thead><tr><th>Jenis Layanan</th><th>Persyaratan</th><th>Waktu</th></tr></thead>
                         <tbody id="layananTableBody"></tbody>
                     </table>
                 </div>
@@ -387,27 +358,46 @@
         </section>
     </main>
 
+    <!-- FOOTER LENGKAP 3 KOLOM -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>DPMPTSP Kab. Luwu</h4>
-                    <p style="opacity: 0.7; font-size: 0.95rem; line-height: 1.8;">Mewujudkan pelayanan prima yang transparan, akuntabel, dan profesional untuk masyarakat Kabupaten Luwu.</p>
+                    <p style="opacity:0.7; line-height:1.8;">Mewujudkan pelayanan prima yang transparan, akuntabel, dan profesional untuk masyarakat Kabupaten Luwu.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Kontak Kami</h4>
                     <ul class="footer-links">
-                        <li><svg class="icon-svg" style="color:var(--accent-light)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Kompleks Perkantoran Bupati Luwu</li>
-                        <li><svg class="icon-svg" style="color:var(--accent-light)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 0851-5809-9464</li>
-                        <li><svg class="icon-svg" style="color:var(--accent-light)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> dpmptsp@luwukab.go.id</li>
+                        <li>
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Kompleks Perkantoran Bupati Luwu
+                        </li>
+                        <li>
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            0851-5809-9464
+                        </li>
+                        <li>
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            dpmptsp@luwukab.go.id
+                        </li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Jam Pelayanan</h4>
                     <ul class="footer-links">
-                        <li><svg class="icon-svg" style="color:var(--accent-light)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Senin - Kamis: 08.00 - 15.00</li>
-                        <li><svg class="icon-svg" style="color:var(--accent-light)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Jumat: 08.00 - 14.00</li>
-                        <li><svg class="icon-svg" style="color:var(--accent-light)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Sabtu & Minggu: Tutup</li>
+                        <li>
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            Senin - Kamis: 08.00 - 15.00
+                        </li>
+                        <li>
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            Jumat: 08.00 - 14.00
+                        </li>
+                        <li>
+                            <svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            Sabtu & Minggu: Tutup
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -417,10 +407,9 @@
         </div>
     </footer>
 
-    <button class="back-to-top" id="backToTop"><svg class="icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="18 15 12 9 6 15"/></svg></button>
+    <button class="back-to-top" id="backToTop"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button>
 
     <script>
-        /* Google Sheets sync */
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRxuIPXZ8r8ryNN8QGphFU8usf_8wevEZX3M7TTdl9FhIeB0wgNL75kv6tsgNOY-eToi1g9NReTJMe2/pub?gid=0&single=true&output=csv";
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -444,7 +433,7 @@
                     return r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, "").trim());
                 });
 
-                const data = { kegiatan: [], pengumuman: [], layanan: [] };
+                const data = { kegiatan: [], pengumuman: [], layanan: [], panduan: [] };
                 rows.forEach(r => {
                     if (!r[0]) return;
                     const type = r[0].toLowerCase();
@@ -452,6 +441,7 @@
                     if (type === 'kegiatan') data.kegiatan.push(item);
                     else if (type === 'pengumuman') data.pengumuman.push(item);
                     else if (type === 'layanan') data.layanan.push(item);
+                    else if (type === 'panduan') data.panduan.push(item);
                 });
 
                 renderUI(data);
@@ -464,52 +454,59 @@
             document.getElementById('countLayanan').innerText = data.layanan.length;
 
             if(data.pengumuman.length > 0) {
-                document.getElementById('runningText').innerText = data.pengumuman.map(p => `📢 ${p.judul}: ${p.isi}`).join('  ◆  ');
+                document.getElementById('runningText').innerText = data.pengumuman.map(p => `ðŸ“¢ ${p.judul}`).join('  â—†  ');
             }
 
             const sliderTrack = document.getElementById('sliderTrack');
             sliderTrack.innerHTML = data.kegiatan.slice(0, 5).map(k => `
                 <div class="slider-slide">
                     <img src="${k.foto || 'https://images.unsplash.com/photo-1497366216548-37526070297c'}" alt="${k.judul}">
-                    <div class="slider-slide-overlay"><h3>${k.judul}</h3><p>${k.isi.substring(0, 100)}...</p></div>
+                    <div class="slider-slide-overlay"><h3>${k.judul}</h3><p>${k.isi.substring(0,100)}...</p></div>
                 </div>
             `).join('');
 
+            document.getElementById('panduanContainer').innerHTML = data.panduan.map(p => `
+                <div class="panduan-card reveal">
+                    <div class="panduan-icon">
+                        <svg class="icon-svg" style="width:32px;height:32px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <h3>${p.judul}</h3>
+                    <ul>${p.isi.replace(/\n/g,'').split('|').map(poin => `<li>${poin.trim()}</li>`).join('')}</ul>
+                </div>
+            `).join('');
+
+            document.getElementById('pengumumanContainer').innerHTML = data.pengumuman.map(p => {
+                let colorClass = '';
+                if(p.isi.includes('libur') || p.isi.includes('tutup')) colorClass = 'warning';
+                if(p.isi.includes('penipuan') || p.isi.includes('hati-hati')) colorClass = 'danger';
+                return `
+                <div class="pengumuman-card reveal ${colorClass}">
+                    <div class="pengumuman-icon-large" style="background:${colorClass==='warning'?'var(--warning)':colorClass==='danger'?'var(--danger)':'var(--accent)'}">
+                        <svg class="icon-svg" style="width:28px;height:28px;color:white;" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    </div>
+                    <div class="content">
+                        <h4>${p.judul}</h4>
+                        <p>${p.isi}</p>
+                    </div>
+                </div>`;
+            }).join('');
+
             document.getElementById('kegiatanContainer').innerHTML = data.kegiatan.map(k => `
                 <article class="kegiatan-card reveal">
-                    <div class="kegiatan-card-img-wrap">
-                        <img src="${k.foto || 'https://via.placeholder.com/400x250'}" class="kegiatan-card-img" alt="${k.judul}">
-                    </div>
+                    <div class="kegiatan-card-img-wrap"><img src="${k.foto || 'https://via.placeholder.com/400x250'}" class="kegiatan-card-img" alt="${k.judul}"></div>
                     <div class="kegiatan-card-body">
-                        <div class="date-badge">
-                            <svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${k.tgl}
-                        </div>
+                        <div class="date-badge"><svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${k.tgl}</div>
                         <h3>${k.judul}</h3>
-                        <p>${k.isi.substring(0, 120)}...</p>
+                        <p>${k.isi.substring(0,120)}...</p>
                     </div>
                 </article>
             `).join('');
 
-            document.getElementById('pengumumanContainer').innerHTML = data.pengumuman.map(p => `
-                <div class="pengumuman-item reveal">
-                    <div class="pengumuman-icon"><svg class="icon-svg" style="width:28px;height:28px;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
-                    <div>
-                        <h4>${p.judul}</h4>
-                        <p>${p.isi}</p>
-                    </div>
-                </div>
-            `).join('');
-
             document.getElementById('layananTableBody').innerHTML = data.layanan.map(l => `
                 <tr class="reveal">
-                    <td>
-                        <div style="display:flex; align-items:center; gap:12px;">
-                            <svg class="icon-svg" style="color:var(--accent); flex-shrink:0;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                            <strong style="color:var(--text-primary); font-size:1rem;">${l.judul}</strong>
-                        </div>
-                    </td>
-                    <td style="font-size:0.95rem;">${l.syarat}</td>
-                    <td><span class="badge-waktu"><svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${l.waktu}</span></td>
+                    <td><strong>${l.judul}</strong></td>
+                    <td>${l.syarat.replace(/,/g,'<br>')}</td>
+                    <td><span class="badge-waktu"><svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${l.waktu}</span></td>
                 </tr>
             `).join('');
 
@@ -525,29 +522,22 @@
             document.getElementById('sliderPrev').onclick = () => { currentSlide = (currentSlide - 1 + slides) % slides; updateSlider(); };
             setInterval(() => { currentSlide = (currentSlide + 1) % slides; updateSlider(); }, 6000);
         }
-
-        function updateSlider() {
-            document.getElementById('sliderTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
+        function updateSlider() { document.getElementById('sliderTrack').style.transform = `translateX(-${currentSlide * 100}%)`; }
 
         function startClock() {
             const update = () => {
                 const now = new Date();
                 document.getElementById('jamDigital').innerText = now.toLocaleTimeString('id-ID');
-                const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-                const bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+                const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
                 document.getElementById('tanggalHari').innerText = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
             };
-            update();
-            setInterval(update, 1000);
+            update(); setInterval(update, 1000);
         }
 
         function initScrollReveal() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-            }, { threshold: 0.1 });
+            const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); }); }, { threshold: 0.1 });
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-            
             const btt = document.getElementById('backToTop');
             window.addEventListener('scroll', () => { btt.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
             btt.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
